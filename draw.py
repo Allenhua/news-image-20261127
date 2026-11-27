@@ -4,7 +4,7 @@ news-image-20261127). Flat vector-style newspaper front page, drawn with PIL.
 
 Layout (1024x1024, written fresh for this day):
   header band -> one full-width LEAD story -> 2x2 grid of second stories
-  -> a dark bottom strip carrying two more short stories.
+  -> a dark bottom strip carrying three more short stories.
 Every story carries its own source label, body copy is dark ink on white
 for contrast, headlines are set large. Drawn with DejaVu fonts already on
 the VM; no network, no AI generation, no randomness, so repeated runs give
@@ -61,7 +61,7 @@ d.rectangle([0, 150, W, 156], fill=GOLD)
 d.text((28, 16), "WORLD NEWS  •  THE DAY IN PICTURES",
        font=font(FB, 24), fill=(148, 178, 212))
 d.text((28, 46), "27 NOVEMBER 2026", font=font(FB, 66), fill=WHITE)
-d.text((28, 118), "Friday — seven stories that defined the day",
+d.text((28, 118), "Friday — eight stories that defined the day",
        font=font(FR, 24), fill=(200, 214, 230))
 d.ellipse([W - 122, 30, W - 38, 114], outline=GOLD, width=5)
 d.text((W - 80, 56), "27", font=font(FB, 32), fill=GOLD, anchor="mm")
@@ -130,19 +130,20 @@ def icon(draw, key, x, y, s, col):
         draw.polygon([(x + s * 0.44, y + s * 0.60), (x + s * 0.50, y + s * 0.78),
                       (x + s * 0.56, y + s * 0.60)], fill=ORANGE)
     elif key == "ballot":
-        # ballot box with a ballot paper and a tick
-        draw.rectangle([x + s * 0.14, y + s * 0.52, x + s * 0.86, y + s * 0.90],
-                       fill=NAVY2)
-        draw.rectangle([x + s * 0.40, y + s * 0.46, x + s * 0.60, y + s * 0.54],
-                       fill=WHITE)
-        draw.polygon([(x + s * 0.30, y + s * 0.52), (x + s * 0.50, y + s * 0.12),
-                      (x + s * 0.70, y + s * 0.52)], fill=WHITE,
-                     outline=NAVY2)
-        draw.line([x + s * 0.42, y + s * 0.36, x + s * 0.48, y + s * 0.44],
+        # ballot box: navy box with a slot on top, a slanted white ballot
+        # paper with a tick emerging from the slot, seat count on the front
+        draw.rounded_rectangle([x + s * 0.16, y + s * 0.56, x + s * 0.84, y + s * 0.92],
+                               radius=6, fill=NAVY2)
+        draw.rectangle([x + s * 0.36, y + s * 0.52, x + s * 0.64, y + s * 0.58],
+                       fill=INK)
+        draw.polygon([(x + s * 0.40, y + s * 0.54), (x + s * 0.54, y + s * 0.08),
+                      (x + s * 0.68, y + s * 0.14), (x + s * 0.54, y + s * 0.54)],
+                     fill=WHITE, outline=NAVY2)
+        draw.line([x + s * 0.52, y + s * 0.34, x + s * 0.56, y + s * 0.40],
                   fill=col, width=6)
-        draw.line([x + s * 0.48, y + s * 0.44, x + s * 0.60, y + s * 0.24],
+        draw.line([x + s * 0.56, y + s * 0.40, x + s * 0.63, y + s * 0.24],
                   fill=col, width=6)
-        draw.text((x + s * 0.50, y + s * 0.72), "65", font=font(FB, int(s * 0.22)),
+        draw.text((x + s * 0.50, y + s * 0.74), "65", font=font(FB, int(s * 0.22)),
                   fill=WHITE, anchor="mm")
     elif key == "ruin":
         # damaged building with a jagged top and smoke
@@ -158,8 +159,22 @@ def icon(draw, key, x, y, s, col):
                                fill=GOLD_LT)
         for cx, cy, r in ((0.30, 0.12, 0.07), (0.48, 0.08, 0.09), (0.66, 0.13, 0.06)):
             draw.ellipse([x + s * (cx - r), y + s * (cy - r),
-                          x + s * (cx + r), y + s * (cy + r)], fill=col)
+                          x + s * (cx + r), y + s * (cy + r)], fill=(112, 118, 130))
+    elif key == "bank":
+        # classical bank: pediment, three columns, stepped base
+        draw.polygon([(x + s * 0.12, y + s * 0.30), (x + s * 0.50, y + s * 0.08),
+                      (x + s * 0.88, y + s * 0.30)], fill=col)
+        draw.rectangle([x + s * 0.14, y + s * 0.32, x + s * 0.86, y + s * 0.38],
+                       fill=NAVY2)
+        for cx in (0.26, 0.50, 0.74):
+            draw.rectangle([x + s * (cx - 0.06), y + s * 0.42,
+                            x + s * (cx + 0.06), y + s * 0.72], fill=NAVY2)
+        draw.rectangle([x + s * 0.14, y + s * 0.74, x + s * 0.86, y + s * 0.80],
+                       fill=NAVY2)
+        draw.rectangle([x + s * 0.10, y + s * 0.82, x + s * 0.90, y + s * 0.88],
+                       fill=col)
     elif key == "chart":
+        # rising market chart with an arrowhead
         # rising market chart with an arrowhead
         draw.line([x + s * 0.14, y + s * 0.16, x + s * 0.14, y + s * 0.86],
                   fill=NAVY2, width=6)
@@ -179,7 +194,7 @@ d.rounded_rectangle([LX, LY, LX + LW, LY + LH], radius=10, fill=WHITE,
                     outline=LINE, width=2)
 d.rectangle([LX, LY, LX + LW, LY + 8], fill=LEAD_COL)
 d.rectangle([LX + 16, LY + 20, LX + 296, LY + LH - 16], fill=LIGHT)
-icon(d, "drone", LX + 16, LY + 20, 184, LEAD_COL)
+icon(d, "drone", LX + 64, LY + 22, 184, LEAD_COL)
 tx = LX + 320
 d.text((tx, LY + 22), "LEAD  •  KUWAIT — GULF",
        font=font(FB, 20), fill=LEAD_COL)
@@ -249,10 +264,11 @@ for i, (tag, col, head, sub, key, src) in enumerate(cards):
         y += 22
     d.text((tx, cy + CH - 24), src, font=font(FB, 15), fill=col)
 
-# ---------- bottom strip: two more short stories ----------
+# ---------- bottom strip: three more short stories ----------
 SY = 864
 d.rectangle([0, SY, W, H], fill=NAVY)
-d.rectangle([W // 2, SY + 14, W // 2, H - 14], fill=(38, 64, 100))
+d.rectangle([356 - 8, SY + 14, 356 - 8, H - 14], fill=(38, 64, 100))
+d.rectangle([684 - 8, SY + 14, 684 - 8, H - 14], fill=(38, 64, 100))
 
 strip = [
     ("GAZA", "Nine killed in Gaza strikes",
@@ -261,25 +277,29 @@ strip = [
     ("MARKETS", "Shares steady, dollar climbs",
      "Shares steady after a bruising month; dollar up for a third month.",
      "chart", "SOURCE: REUTERS", (22, 120, 60)),
+    ("ECB", "ECB names de Cos president",
+     "Pablo Hernández de Cos named next ECB president.",
+     "bank", "SOURCE: REUTERS", GOLD),
 ]
 
 for i, (tag, head, sub, key, src, col) in enumerate(strip):
-    bx = 28 + i * (W // 2)
-    bw = W // 2 - 56
-    d.rectangle([bx, SY + 18, bx + 92, SY + 110], fill=LIGHT)
-    icon(d, key, bx, SY + 18, 92, col)
-    tx = bx + 108
-    d.text((tx, SY + 20), tag, font=font(FB, 17), fill=GOLD_LT)
-    hl = wrap(d, head, font(FB, 25), bw - 108)
-    y = SY + 44
-    for ln in hl[:1]:
-        d.text((tx, y), ln, font=font(FB, 25), fill=WHITE)
-        y += 31
-    sl = wrap(d, sub, font(FR, 18), bw - 108)
+    bx = 28 + i * 328
+    bw = 312
+    d.rectangle([bx, SY + 18, bx + 80, SY + 98], fill=LIGHT)
+    icon(d, key, bx, SY + 18, 80, col)
+    tx = bx + 92
+    d.text((tx, SY + 18), tag, font=font(FB, 17), fill=GOLD_LT)
+    hl = wrap(d, head, font(FB, 22), bw - 92)
+    y = SY + 42
+    for ln in hl[:2]:
+        d.text((tx, y), ln, font=font(FB, 22), fill=WHITE)
+        y += 27
+    sl = wrap(d, sub, font(FR, 16), bw - 92)
+    y = SY + 98
     for ln in sl[:2]:
-        d.text((tx, y), ln, font=font(FR, 18), fill=SKY)
-        y += 23
-    d.text((tx, SY + 132), src, font=font(FB, 14), fill=GOLD_LT)
+        d.text((tx, y), ln, font=font(FR, 16), fill=SKY)
+        y += 20
+    d.text((tx, SY + 140), src, font=font(FB, 13), fill=GOLD_LT)
 
 img.save("entry.png", optimize=True)
 print("saved entry.png", img.size)

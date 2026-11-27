@@ -103,15 +103,23 @@ these outlets reported.
    Reuters, "Shares find footing after bruising month, dollar set for
    third monthly gain", 27 Nov 2026
    (https://www.reuters.com/world/china/global-markets-global-markets-2026-11-27/).
+8. **ECB names de Cos president** — Pablo Hernández de Cos was named the
+   next president of the European Central Bank. Source: Reuters, 27 Nov
+   2026.
+
+Revision (27 November evening, v2): the bottom strip was widened from two
+to three stories to add the ECB appointment (story 8 above); the New
+Zealand ballot-box icon was redrawn (it read as a roof before) and the
+Gaza icon's smoke changed from red to grey; the lead drone icon was
+centred in its panel. No fact in the image changed except the addition
+of story 8.
 
 Stories deliberately left out: Australia's sanctions on two people over
 antisemitic attacks it blames on Iran (Reuters, 27 Nov — real, but cut
-for space in favour of the seven chosen); Japan eyeing a ¥56.3 trillion
+for space in favour of the eight chosen); Japan eyeing a ¥56.3 trillion
 ($353 billion) five-year defence plan (Reuters/Asahi, 27 Nov — real,
-cut for space); Pablo Hernández de Cos named next European Central Bank
-president (Reuters, 27 Nov — real, cut for space); the two-helicopter
-collision near Everest base camp (BBC, 4 Nov — three weeks old, not a
-27 November story); the Colombia supermarket siege (all hostages freed
-after 16 hours — real, but cut for space); Ebola case counts in eastern
-DR Congo (only social-media summaries found, not verified against a wire
-in time).
+cut for space); the two-helicopter collision near Everest base camp
+(BBC, 4 Nov — three weeks old, not a 27 November story); the Colombia
+supermarket siege (all hostages freed after 16 hours — real, but cut
+for space); Ebola case counts in eastern DR Congo (only social-media
+summaries found, not verified against a wire in time).

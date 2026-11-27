@@ -1,7 +1,7 @@
 // news-image-20261127 entry (Node 22, standard library only).
 // The image is the entry.png beside this file: a flat vector-style front page
-// summing up Friday 27 November 2026 in seven stories — a full-width lead
-// on the drone attack in Kuwait, four stories in a 2x2 grid, and two more in
+// summing up Friday 27 November 2026 in eight stories — a full-width lead
+// on the drone attack in Kuwait, four stories in a 2x2 grid, and three more in
 // the bottom strip. The program copies it to /output/entry.png. The gate takes
 // a whole PNG of at most 1 MiB and 1024 by 1024 pixels (this one is
 // 1024x1024 and about 130 KiB), and the judge sees
